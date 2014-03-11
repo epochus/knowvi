@@ -11,6 +11,19 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+SETTINGS_DIR = os.path.dirname(__file__)
+PROJECT_PATH = os.path.join(SETTINGS_DIR, os.pardir)
+PROJECT_PATH = os.path.abspath(PROJECT_PATH)
+
+
+# Absolute path to templates folder
+TEMPLATE_PATH = os.path.join(PROJECT_PATH, 'templates')
+
+# Absolute path to static folder
+STATIC_PATH = os.path.join(PROJECT_PATH, 'static')
+
+# Absolute path to media folder
+MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media')
 
 
 # Quick-start development settings - unsuitable for production
@@ -27,6 +40,7 @@ TEMPLATE_DEBUG = True
 ALLOWED_HOSTS = []
 
 
+
 # Application definition
 
 INSTALLED_APPS = (
@@ -36,7 +50,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rango',
+    'knowvi',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -52,6 +66,11 @@ ROOT_URLCONF = 'knowvi_project.urls'
 
 WSGI_APPLICATION = 'knowvi_project.wsgi.application'
 
+# Templates
+TEMPLATE_DIRS = (
+    # Put strings here and don't forget to use absolute paths
+    TEMPLATE_PATH,
+)
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
@@ -81,3 +100,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    STATIC_PATH,
+)
+
+# Media files
+MEDIA_URL = '/media/'
