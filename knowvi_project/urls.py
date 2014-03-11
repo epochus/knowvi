@@ -8,5 +8,8 @@ urlpatterns = patterns('',
     # url(r'^$', 'knowvi_project.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
-    url(r'^admin/', include(admin.site.urls)),
+    # Enables the admin
+    # url(r'^admin/', include(admin.site.urls)),
+
+    url(r'^rango/', include('rango.urls')),
 )
