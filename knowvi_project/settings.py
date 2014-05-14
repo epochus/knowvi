@@ -25,6 +25,8 @@ STATIC_PATH = os.path.join(PROJECT_PATH, 'static')
 # Absolute path to media folder
 MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media')
 
+# Absolute path to database
+DATABASE_PATH = os.path.join(PROJECT_PATH, 'knowvi.db')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
@@ -78,7 +80,7 @@ TEMPLATE_DIRS = (
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': DATABASE_PATH,
     }
 }
 

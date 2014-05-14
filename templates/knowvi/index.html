@@ -11,8 +11,21 @@
 
     <body>
         <h1>Knowvi says... </h1>
-        hello world! <strong>{{ boldmessage }}</strong><br />
+
+        <h2>Top Five Categories ranked by likes</h2>
+        {% if categories %}
+            <ul>
+                {% for category in categories %}
+                <li><a href="/knowvi/category/{{ category.url }}"
+                    >{{ category.name }}</a> [{{ category.likes }}]</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <strong>There are no categories present.</strong>
+        {% endif %}
+
         <a href="/knowvi/about/">About</a><br />
+        <a href="/knowvi/add_category/">Add a New Category</a>
     </body>
 
 </html>
