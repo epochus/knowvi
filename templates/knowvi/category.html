@@ -8,10 +8,10 @@
     </head>
 
     <body>
-        <h1>{{ category_name }}</h1>
-        <h2>Top 5 pages ranked by views</h2>
         {% if category %}
+        <h1>{{ category_name }}</h1>
             {% if pages %}
+            <h2>Top 5 pages ranked by views</h2>
             <ul>
                 {% for page in pages %}
                 <li><a href="{{ page.url }}">{{ page.title }}</a>
@@ -21,10 +21,14 @@
             {% else %}
                 <strong>No pages currently in category.</strong>
             {% endif %}
+
+            <br><a href="/knowvi/category/{{category_name_url}}/add_page/">Add a New Page</a><br />
         {% else %}
+        <br />
             The specified category {{ category_name }} does not exist!
         {% endif %}
-        <a href="/knowvi/">Return to Index</a><br />
+        
+        <br><a href="/knowvi/">Return to Index</a><br />
     </body>
 
 </html>
