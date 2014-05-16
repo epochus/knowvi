@@ -1,34 +1,21 @@
-<!DOCTYPE html>
-{% load static %}
+{% extends 'knowvi/base.html' %}
 
-<html>
-    <head>
-        <img src="{% static "knowvibanner.png" %}" alt="Knowvi banner" />
-        <title>Knowvi</title>
-    </head>
+{% block title %}{{ category_name }}{% endblock %}
 
-    <body>
-        {% if category %}
-        <h1>{{ category_name }}</h1>
-            {% if pages %}
-            <h2>Top 5 pages ranked by views</h2>
-            <ul>
-                {% for page in pages %}
-                <li><a href="{{ page.url }}">{{ page.title }}</a>
-                [{{ page.views }}]</li>
-                {% endfor %}
-            </ul>
-            {% else %}
-                <strong>No pages currently in category.</strong>
-            {% endif %}
+{% block body_block %}
+    <h1>{{ category_name }}</h1>
 
-            <br><a href="/knowvi/category/{{category_name_url}}/add_page/">Add a New Page</a><br />
-        {% else %}
-        <br />
-            The specified category {{ category_name }} does not exist!
-        {% endif %}
-        
-        <br><a href="/knowvi/">Return to Index</a><br />
-    </body>
-
-</html>
+    {% if pages %}
+    <ul>
+        {% for page in pages %}
+        <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <strong>No pages currently in category.</strong>
+    {% endif %}
+    {% if user.is_authenticated %}
+        <br><a href="/knowvi/category/{{category_name_url}}/add_page/"
+                   >Add a New Page</a><br />
+    {% endif %}
+{% endblock %}

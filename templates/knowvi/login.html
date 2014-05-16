@@ -1,21 +1,17 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Knowvi</title>
-    </head>
+{% extends 'knowvi/base.html' %}
 
-    <body>
-        <h1>Login to Knowvi</h1>
+{% block title %}Login{% endblock %}
 
-        <form id="login_form" method="post" action="/knowvi/login/">
-            {% csrf_token %}
-            Username: <input type="text" name="username" value="" size="50" />
-            <br />
-            Password: <input type="password" name="password" value="" size="50" />
-            <br />
+{% block body_block %}
+    <h1>Login</h1>
 
-            <input type="submit" value="submit" />
-        </form>
+    <form id="login_form" method="post" action="/knowvi/login/">
+        {% csrf_token %}
+        Username: <input type="text" name="username" value="" size="50" />
+        <br />
+        Password: <input type="password" name="password" value="" size="50" />
+        <br />
 
-    </body>
-</html>
+        <input type="submit" value="submit" />
+    </form>
+{% endblock %}
