@@ -109,3 +109,6 @@ STATICFILES_DIRS = (
 
 # Media files
 MEDIA_URL = '/media/'
+
+# Login
+LOGIN_URL = '/knowvi/login/'
