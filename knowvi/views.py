@@ -12,6 +12,9 @@ from knowvi.forms import CategoryForm
 from knowvi.forms import PageForm
 from knowvi.forms import UserForm, UserProfileForm
 
+# Checking date and time
+from datetime import datetime
+
 def encode_url(str):
     return str.replace(' ', '_')
 
@@ -35,13 +38,37 @@ def index(request):
     for category in category_list:
         category.url = encode_url(category.name);
     
-    # Return a rendered response to send to the client
-    return render_to_response('knowvi/index.html', context_dict, context)
+    response = render_to_response('knowvi/index.html', context_dict, context)
+
+    if request.session.get('last_visit'):
+        # The session has a value for the last visit
+        last_visit_time = request.session.get('last_visit')
+        visits = request.session.get('visits', 0)
+
+        if (datetime.now() - datetime.strptime(last_visit_time[:7],
+            "%Y-%m-%d %H:%M:%S")).days > 0:
+            request.session['visits'] = visits + 1
+            request.session['last_visit'] = str(datetime.now())
+        else:
+            # The get returns None, and the session does not have a value for
+            # the last visit.
+            request.session['last_visit'] = str(datetime.now())
+            request.session['visits'] = 1
+
+    # Return response back to the user, updating any cookies that need changed.
+    return response
 
 def about(request):
     context = RequestContext(request)
 
     context_dict = {'boldmessage': "I am bold font from the context"}
+
+    if request.session.get('visits'):
+        count = request.session.get('visits')
+    else:
+        count = 0
+
+    context_dict['visits'] = count
 
     return render_to_response('knowvi/about.html', context_dict, context)
 
