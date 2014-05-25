@@ -16,39 +16,37 @@
 
     <!-- top bar -->
 <div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="navbar-inner">
+    <div class="container-fluid">
 
-        <div class="container-fluid">
-            <button type="button" class="btn btn-navbar" 
-                data-toggle="collapse" data-target=".nav-collapse">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" 
+                data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="brand" href="/knowvi/">Knowvi</a>
-
-            <div class="nav-collapse collapse">
-                <ul class="nav pull-right">
-                    {% if user.is_authenticated %}
-                    <li class="navbar-text">Welcome, {{ user.username }}!</li>
-                    <li><a href="/knowvi/logout/">Logout</a></li>
-                    {% else %}
-                    <li><a href="/knowvi/register/">Register</a></li>
-                    <li><a href="/knowvi/login/">Login</a></li>
-                    {% endif %}
-                </ul>
-                <ul class="nav">
-                    {% if user.is_authenticated %}
-                    <li><a href="/knowvi/restricted/">Restricted Page</a></li>
-                    <li><a href="/knowvi/add_category/">Add a New Category</a></li>
-                    {% endif %}
-                    <li><a href="/knowvi/about/">About</a></li>
-                    <!-- <li><a href="/knowvi/">Return to Index</a></li> -->
-                </ul>
-            </div> <!-- nav-collapse -->  
-
+            <a class="navbar-brand" href="/knowvi/">Knowvi</a>
         </div> <!-- container-fluid -->    
-
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                {% if user.is_authenticated %}
+                <li class="navbar-text">Welcome, {{ user.username }}!</li>
+                <li><a href="/knowvi/logout/">Logout</a></li>
+                {% else %}
+                <li><a href="/knowvi/register/">Register</a></li>
+                <li><a href="/knowvi/login/">Login</a></li>
+                {% endif %}
+            </ul>
+            <ul class="nav">
+                {% if user.is_authenticated %}
+                <li><a href="/knowvi/restricted/">Restricted Page</a></li>
+                <li><a href="/knowvi/add_category/">Add a New Category</a></li>
+                {% endif %}
+                <li><a href="/knowvi/about/">About</a></li>
+                <!-- <li><a href="/knowvi/">Return to Index</a></li> -->
+            </ul>
+        </div> <!-- nav-collapse -->  
     </div> <!-- navbar-inner -->
 </div> <!-- navbar -->
 
