@@ -1,9 +1,16 @@
 {% extends 'knowvi/base.html' %}
 
+{% load static %}
+
 {% block title %}About{% endblock %}
 
 {% block body_block %}
-    <h1>About</h1>
-    Welcome to Knowvi, a curated collection of links.<br />
-    Unique Visitors: {{ visits }}
+<div class="hero-unit">
+    <h1>About Knowvi</h1>
+    Welcome to <strong>Knowvi</strong>, a curated collection of links.<br />
+    Unique Visitors: {{ visits }}.<br />
+    You've visited the site on {{ visit_count }} occasion(s).<br />
+
+    <img src="{% static "knowvibanner.png" %}" alt="Knowvi Banner" />
+</div>
 {% endblock %}
