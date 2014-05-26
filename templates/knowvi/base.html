@@ -1,82 +1,100 @@
 <!DOCTYPE html>
-{% load static %}
-<html>
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap -->
-    <link href="{% static "css/bootstrap-fluid-adj.css" %}" rel="stylesheet">
-    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet"
-    media="screen">
-    <link href="{% static "css/bootstrap-responsive.css" %}" rel="stylesheet">
 
-    <title>Knowvi {% block title %}- A curated collection of links
-        {% endblock %}</title>
-</head>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="Jackson Wu" content="">
+    <!--
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+    -->
+
+    <title>Knowvi</title>
+
+    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+    <link href="{% static "css/dashboard.css" %}" rel="stylesheet">
+  </head>
 
 <body>
-<div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="navbar-inner">
 
-        <div class="container-fluid">
-            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="brand" href="/knowvi/">Knowvi</a>
-
-            <div class="nav-collapse collapse">
-                <ul class="nav pull-right">
-                    {% if user.is_authenticated %}
-                    <li class="navbar-text">Welcome, {{ user.username }}!</li>
-                    <li><a href="/knowvi/logout/">Logout</a></li>
-                    {% else %}
-                    <li><a href="/knowvi/register/">Register</a></li>
-                    <li><a href="/knowvi/login/">Login</a></li>
-                    {% endif %}
-                </ul>
-                <ul class="nav">
-                    {% if user.is_authenticated %}
-                    <li><a href="/knowvi/restricted/">Restricted Page</a></li>
-                    <li><a href="/knowvi/add_category/">Add a New Category</a></li>
-                    {% endif %}
-                    <li><a href="/knowvi/about/">About</a></li>
-                    <!-- <li><a href="/knowvi/">Return to Index</a></li> -->
-                </ul>
-            </div> <!-- /nav-collapse -->  
-
-        </div> <!-- /container -->    
-
-    </div> <!-- /navbar-inner -->
-</div> <!-- /.navbar -->
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/knowvi/">Knowvi</a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        {% if user.is_authenticated %}
+        <li class="navbar-text">Welcome, {{ user.username }}!</li>
+        <li><a href="/knowvi/restricted/">Restricted Page</a></li>
+        <li><a href="/knowvi/add_category/">Add a New Category</a></li>
+        <li><a href="/knowvi/logout/">Logout</a></li>
+        {% else %}
+        <li><a href="/knowvi/register/">Register</a></li>
+        <li><a href="/knowvi/login/">Login</a></li>
+        {% endif %}
+      </ul>
+      <!--
+      <form class="navbar-form navbar-right">
+        <input type="text" class="form-control" placeholder="Search...">
+      </form>
+      -->
+    </div>
+  </div>
+</div>
 
 <div class="container-fluid">
-    <div class="row-fluid">
+  <div class="row">
 
-        <div class="span3">
-            <div class="well sidebar-nav">
-                <!--- Empty for the timebeing -->
-            </div> <!-- /well -->
-        </div> <!-- /span -->
-
-        <div class="span9">
-            {% block body_block %}
-            {% endblock %}
-        </div>
-
-    </div> <!-- row-fluid -->
-</div> <!-- container -->
-
-<hr>
-
-<footer>
-    <div class="container">
-        <p>&copy; Knowvi: A curated collection of links 2014</p>
+      <!-- Sidebar -->
+    <div class="col-sm-3 col-md-2 sidebar">
+      <ul class="nav nav-sidebar">
+        <li><a href="/knowvi/about/">About</a></li>
+      </ul>
+      <ul class="nav nav-sidebar">
+        <li><a href="">Nav item</a></li>
+        <li><a href="">Nav item again</a></li>
+        <li><a href="">One more nav</a></li>
+        <li><a href="">Another nav item</a></li>
+        <li><a href="">More navigation</a></li>
+      </ul>
+      <ul class="nav nav-sidebar">
+        <li><a href="">Nav item again</a></li>
+        <li><a href="">One more nav</a></li>
+        <li><a href="">Another nav item</a></li>
+      </ul>
     </div>
-</footer>
 
+    <!-- Main content -->
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        {% block body_block %}
+        {% endblock %}
+    <hr>
+    <footer>
+        <div class="container">
+            <p>&copy; 2014, Knowvi. </p>
+        </div>
+    </footer>
+
+
+    </div>
+
+    </div> <!-- row -->
+</div> <!-- container-fluid -->
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
 <script src="{% static "js/jquery-2.1.1.min.js" %}"></script>
 <script src="{% static "js/bootstrap.min.js" %}"></script>
 </body>
-
 </html>
