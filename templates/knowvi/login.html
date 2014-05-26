@@ -9,31 +9,31 @@
     <div class="container" id="wrap">
         <div class="col-lg-6 col-lg-offset-3">
 
-    <h1>Login</h1>
-    
-    <form id="login_form" method="post" action="/knowvi/login/">
-        <h2>Please sign in</h2>
-        {% csrf_token %}
+            <h1>Login</h1>
+            
+            <form id="login_form" method="post" action="/knowvi/login/">
+                <h2>Please sign in</h2>
+                {% csrf_token %}
 
-        {% if bad_details %}
-        <p><strong>Your username and/or password were incorrect!</strong></p>
-        {% elif disabled_account %}
-        <p><strong>Your Knowvi account is currently disabled; we can't log
-            you in.</strong></p>
-        {% endif %}
+                {% if bad_details %}
+                <p><strong>Your username and/or password were incorrect!</strong></p>
+                {% elif disabled_account %}
+                <p><strong>Your Knowvi account is currently disabled; we can't log
+                    you in.</strong></p>
+                {% endif %}
 
-        <input type="text" class="form-control input-lg" 
-        placeholder="Username" name="username" value="" size="50" />
-        <br />
-        <input type="password" class="form-control input-lg" 
-        placeholder="Password" name="password" value="" size="50" />
-        <br />
-    
-        <button class="btn btn-primary" type="submit">Sign in</button>
-    </form>
+                <input type="text" class="form-control input-lg" 
+                placeholder="Username" name="username" value="" size="50" />
+                <br />
+                <input type="password" class="form-control input-lg" 
+                placeholder="Password" name="password" value="" size="50" />
+                <br />
+            
+                <button class="btn btn-primary" type="submit">Sign in</button>
+            </form>
 
-       </div>
-    </div>
+        </div> <!-- col-lg-6 -->
+    </div> <!-- container -->
 </div>
 
 {% endblock %}

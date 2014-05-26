@@ -13,7 +13,6 @@
 
             {% if registered %}
             <strong>Thank you for registering!</strong><br />
-            <a href="/knowvi/">Return to the homepage.</a>
             {% else %}
             <strong>Register here!</strong><br />
 
@@ -24,13 +23,19 @@
 
                 {% csrf_token %}
 
-                <!-- Display each form. The as_p method wraps each element in a
-                paragraph (<p>) element. This ensures each element appears on a
-                new line, making everything look neater. -->
-                {{ user_form.as_p }}
-                {{ profile_form.as_p }}
+                {% for field in user_form.visible_fields %}
+                {{ field.errors }}
+                {{ field.help_text }}<br />
+                {{ field }}<br />
+                {% endfor %}
 
-                <!-- Provide a button to click to submit the form. -->
+                {% for field in profile_form.visible_fields %}
+                {{ field.errors }}
+                {{ field.help_text }}<br />
+                {{ field }}<br />
+                {% endfor %}
+
+                <br />
                 <button class="btn btn-primary" type="submit">Register</button>
             </form>
 
