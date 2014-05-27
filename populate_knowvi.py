@@ -1,43 +1,43 @@
 import os
 
 def populate():
-    python_cat = add_cat('Python')
+    book_cat = add_cat('Books')
 
-    add_page(cat=python_cat,
-        title="Official Python Tutorial",
-        url="http://docs.python.org/2/tutorial/")
+    add_page(cat=book_cat,
+        title="Coding Bat",
+        url="http://codingbat.com/")
 
-    add_page(cat=python_cat,
+    add_page(cat=book_cat,
         title="How to Think like a Computer Scientist",
         url="http://www.greenteapress.com/thinkpython/")
 
-    add_page(cat=python_cat,
+    add_page(cat=book_cat,
         title="Learn Python in 10 Minutes",
         url="http://www.korokithakis.net/tutorials/python/")
 
-    django_cat = add_cat("Django")
+    compsci = add_cat("Computer Science")
 
-    add_page(cat=django_cat,
+    add_page(cat=compsci,
         title="Official Django Tutorial",
         url="https://docs.djangoproject.com/en/1.5/intro/tutorial01/")
 
-    add_page(cat=django_cat,
+    add_page(cat=compsci,
         title="Django Rocks",
         url="http://www.djangorocks.com/")
 
-    add_page(cat=django_cat,
+    add_page(cat=compsci,
         title="How to Tango with Django",
         url="http://www.tangowithdjango.com/")
 
-    frame_cat = add_cat("Other Frameworks")
+    other_cat = add_cat("Other")
 
-    add_page(cat=frame_cat,
-        title="Bottle",
-        url="http://bottlepy.org/docs/dev/")
+    add_page(cat=other_cat,
+        title="View DNS",
+        url="http://viewdns.info/")
 
-    add_page(cat=frame_cat,
-        title="Flask",
-        url="http://flask.pocoo.org")
+    add_page(cat=other_cat,
+        title="Unicode Table",
+        url="http://unicode-table.com/")
 
     # Print out what we have added to the user.
     for c in Category.objects.all():
