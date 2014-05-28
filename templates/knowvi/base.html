@@ -20,6 +20,7 @@
 
 <body>
 
+    <!-- Top bar -->
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -33,14 +34,17 @@
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/knowvi/login/">Contact</a></li>
+        <li><a href="/knowvi/login/">Submit</a></li>
       </ul>
       <form class="navbar-form navbar-right" action="/knowvi/search/">
-        <input type="text" class="form-control" placeholder="Search...">
+          <input type="text" name="search-query" class="form-control" 
+          placeholder="Search...">
       </form>
     </div>
   </div>
 </div>
+
+
 
 <div class="container-fluid">
   <div class="row">
@@ -48,16 +52,21 @@
       <!-- Sidebar -->
     <div class="col-sm-3 col-md-2 sidebar">
       <ul class="nav nav-sidebar">
-        <li><a href="/knowvi/about/">About</a></li>
+          <li {% if request.path == "/knowvi/" %} class="active"{% endif %}>
+          <a href="/knowvi/">Home</a></li>
+          <li {% if request.path == '/knowvi/about/' %}class="active"{% endif %}>
+          <a href="/knowvi/about/">About</a></li>
       </ul>
       <ul class="nav nav-sidebar">
-          {% block sidebar %}
-          {% endblock %}
-          <div id="cats">
-              {% if cat_list %}
-                  {% include 'knowvi/category_list.html' with cat_list=cat_list %}
-              {% endif %}  
-          </div>
+          <li {% if request.path == "/knowvi/category/Books/" %}class="active"
+          {% endif %}><a href="/knowvi/category/Books/">Books</a></li>
+
+          <li {% if request.path == "/knowvi/category/Computer_Science/" %}
+          class="active"{% endif %}><a href="/knowvi/category/Computer_Science/"
+              >Computer Science</a></li>
+
+          <li {% if request.path == "/knowvi/category/Other/" %}class="active"
+          {% endif %}><a href="/knowvi/category/Other/">Other</a></li>
       </ul>
     </div>
 

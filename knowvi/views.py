@@ -1,4 +1,4 @@
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render, render_to_response, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 from django.contrib.auth import authenticate, login, logout
@@ -15,6 +15,11 @@ from knowvi.forms import UserForm, UserProfileForm
 # Checking date and time
 from datetime import datetime
 
+# Import search
+from knowvi.search import normalize_query, get_query
+
+
+
 def encode_url(str):
     return str.replace(' ', '_')
 
@@ -25,11 +30,10 @@ def index(request):
     # Request context of the request
     # The context contains information such as the client's machine
     context = RequestContext(request)
-
     context_dict = {}
 
-    # Retrieve top 5 categories ranked by likes, descending
-    category_list = Category.objects.order_by('-likes')[:5]
+    # Retrieve top 5 categories ranked by views, descending
+    category_list = Category.objects.order_by('-views')[:5]
     context_dict['categories'] = category_list
 
     page_list = Page.objects.order_by('-views')[:5]
@@ -92,6 +96,8 @@ def add_category(request):
     # Get the context from the request.
     context = RequestContext(request)
 
+    context_dict = {}
+
     # A HTTP POST?
     if request.method == 'POST':
         form = CategoryForm(request.POST)
@@ -111,9 +117,10 @@ def add_category(request):
         # If the request was not a POST, display the form to enter details.
         form = CategoryForm()
 
+    context_dict['form'] = form
     # Bad form (or form details), no form supplied...
     # Render the form with error messages (if any).
-    return render_to_response('knowvi/add_category.html', {'form': form}, context)
+    return render_to_response('knowvi/add_category.html', context_dict, context)
 
 def add_page(request, category_name_url):
     context = RequestContext(request)
@@ -162,7 +169,6 @@ def add_page(request, category_name_url):
 def register(request):
     # Like before, get the request's context/
     context = RequestContext(request)
-
     context_dict = {}
 
     # A boolean value for telling the template whether the registration was 
@@ -227,6 +233,7 @@ def register(request):
 def user_login(request):
     # Like before, obtain the context for the user's request
     context = RequestContext(request)
+    context_dict = {}
 
     # If the request is a HTTP POST, try to pull out the relevant information
     if request.method == 'POST':
@@ -262,15 +269,51 @@ def user_login(request):
     else:
         # No context variables to pass to the template system, hence the 
         # blank dictionary object...
-        return render_to_response('knowvi/login.html', {}, context)
+        return render_to_response('knowvi/login.html', context_dict, context)
 
 @login_required
 def restricted(request):
     context = RequestContext(request)
     context_dict = {}
+
     return render_to_response('knowvi/restricted.html', context_dict, context)
 
 @login_required
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect('/knowvi/')
+
+def get_category_list():
+    cat_list = Category.objects.all()
+
+    for cat in cat_list:
+        cat.url = encode_url(cat.name)
+
+    return cat_list
+
+def search(request):
+    context = RequestContext(request)
+
+    context_dict = {}
+
+    query = request.GET['search-query']
+    context_dict['query'] = query
+
+    return render_to_response('knowvi/search.html', context_dict, context)
+
+def track_url(request):
+    context = RequestContext(request)
+    page_id = None
+    url = '/knowvi/'
+    if request.method == 'GET':
+        if 'page_id' in request.GET:
+            page_id = request.GET['page_id']
+            try:
+                page = Page.objects.get(id=page_id)
+                page.views = page.views + 1
+                page.save()
+                url = page.url
+            except:
+                pass
+
+    return redirect(url)

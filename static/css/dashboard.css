@@ -56,6 +56,11 @@ body {
   color: #fff;
   background-color: #428bca;
 }
+/* Custom content added by me, keeps styling the same when active and hover */
+.nav-sidebar > .active > a:hover {
+  color: #fff;
+  background-color: #428bca;
+}
 
 
 /*
@@ -94,3 +99,9 @@ body {
   display: inline-block;
   border-radius: 50%;
 }
+
+/*
+ * Custom CSS 
+ */
+
+

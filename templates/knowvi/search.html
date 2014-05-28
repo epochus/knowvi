@@ -9,18 +9,7 @@
 
     <div class="container">
         Search terms here?
-        {% if query_string %}
-        Yes to query_string
-        <div style="clear: both;">
-            <ol>
-            {% for query in query_string %}
-                <li>
-                {{ query }}
-                </li>
-            {% endfor %}
-            </ol>
-        </div>
-        {% endif %}
+        {{ query }}
     </div> <!-- container -->
 
 </div>

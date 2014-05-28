@@ -10,6 +10,8 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SETTINGS_DIR = os.path.dirname(__file__)
 
@@ -74,6 +76,12 @@ TEMPLATE_DIRS = (
     # Put strings here and don't forget to use absolute paths
     TEMPLATE_PATH,
 )
+
+# Active link highlighting
+TEMPLATE_CONTEXT_PROCESSORS += (
+        'django.core.context_processors.request',
+)
+
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
