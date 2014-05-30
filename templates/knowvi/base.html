@@ -34,10 +34,10 @@
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/knowvi/login/">Submit</a></li>
+        <li><a href="/knowvi/contact/">Submit</a></li>
       </ul>
       <form class="navbar-form navbar-right" action="/knowvi/search/">
-          <input type="text" name="search-query" class="form-control" 
+          <input type="text" name="q" class="form-control" 
           placeholder="Search...">
       </form>
     </div>
@@ -58,15 +58,27 @@
           <a href="/knowvi/about/">About</a></li>
       </ul>
       <ul class="nav nav-sidebar">
-          <li {% if request.path == "/knowvi/category/Books/" %}class="active"
-          {% endif %}><a href="/knowvi/category/Books/">Books</a></li>
+
+          <li {% if request.path == "/knowvi/category/Collections/" %}
+          class="active"{% endif %}><a href="/knowvi/category/Collections/"
+              >Collections</a></li>
 
           <li {% if request.path == "/knowvi/category/Computer_Science/" %}
-          class="active"{% endif %}><a href="/knowvi/category/Computer_Science/"
+              class="active"{% endif %}><a href="/knowvi/category/Computer_Science/"
               >Computer Science</a></li>
 
-          <li {% if request.path == "/knowvi/category/Other/" %}class="active"
-          {% endif %}><a href="/knowvi/category/Other/">Other</a></li>
+          <li {% if request.path == "/knowvi/category/Dictionary/" %}
+          class="active"{% endif %}><a href="/knowvi/category/Dictionary/"
+              >Dictionary</a></li>
+
+          <li {% if request.path == "/knowvi/category/Languages/" %}
+          class="active"{% endif %}><a href="/knowvi/category/Languages/"
+              >Languages</a></li>
+
+          <li {% if request.path == "/knowvi/category/Literacy/" %}
+          class="active"{% endif %}><a href="/knowvi/category/Literacy/"
+              >Literacy</a></li>
+
       </ul>
     </div>
 

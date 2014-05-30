@@ -1,43 +1,38 @@
 import os
 
 def populate():
-    book_cat = add_cat('Books')
 
-    add_page(cat=book_cat,
-        title="Coding Bat",
-        url="http://codingbat.com/")
-
-    add_page(cat=book_cat,
-        title="How to Think like a Computer Scientist",
-        url="http://www.greenteapress.com/thinkpython/")
-
-    add_page(cat=book_cat,
-        title="Learn Python in 10 Minutes",
-        url="http://www.korokithakis.net/tutorials/python/")
+    collect_cat = add_cat('Collections')
+    add_page(cat=collect_cat,
+        title="Over API",
+        url="http://overapi.com/")
+    add_page(cat=collect_cat,
+        title="Cheatography",
+        url="http://www.cheatography.com/")
 
     compsci = add_cat("Computer Science")
-
     add_page(cat=compsci,
-        title="Official Django Tutorial",
-        url="https://docs.djangoproject.com/en/1.5/intro/tutorial01/")
+        title="Computer Science Field Guide",
+        url="https://c.canterbury.ac.nz/csfieldguide/")
 
-    add_page(cat=compsci,
-        title="Django Rocks",
-        url="http://www.djangorocks.com/")
+    dict_cat = add_cat("Dictionary")
+    add_page(cat=dict_cat,
+        title="OneLook Dictionary Search",
+        url="http://www.onelook.com/")
+    add_page(cat=dict_cat,
+        title="Webopedia",
+        url="http://www.webopedia.com/")
 
-    add_page(cat=compsci,
-        title="How to Tango with Django",
-        url="http://www.tangowithdjango.com/")
+    lang_cat = add_cat("Languages")
+    add_page(cat=lang_cat,
+        title="Free Language Learning Resources",
+        url="http://www.universitiesandcolleges.org/blog/language-learning-resources/")
 
-    other_cat = add_cat("Other")
+    lit_cat = add_cat("Literacy")
+    add_page(cat=lit_cat,
+        title="Gorilla Paper",
+        url="http://pages.uscd.edu/~dkjordan/resources/gorillapaper/gorilla.html/")
 
-    add_page(cat=other_cat,
-        title="View DNS",
-        url="http://viewdns.info/")
-
-    add_page(cat=other_cat,
-        title="Unicode Table",
-        url="http://unicode-table.com/")
 
     # Print out what we have added to the user.
     for c in Category.objects.all():

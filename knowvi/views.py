@@ -15,11 +15,6 @@ from knowvi.forms import UserForm, UserProfileForm
 # Checking date and time
 from datetime import datetime
 
-# Import search
-from knowvi.search import normalize_query, get_query
-
-
-
 def encode_url(str):
     return str.replace(' ', '_')
 
@@ -295,15 +290,22 @@ def search(request):
     context = RequestContext(request)
 
     context_dict = {}
+    pages = []
+    query = ''
 
-    query = request.GET['search-query']
+    if 'q' in request.GET and request.GET['q']:
+        query = request.GET['q']
+        pages = Page.objects.filter(title__icontains=query)
+
     context_dict['query'] = query
+    context_dict['pages'] = pages
 
     return render_to_response('knowvi/search.html', context_dict, context)
 
 def track_url(request):
     context = RequestContext(request)
     page_id = None
+    cat_id =  None
     url = '/knowvi/'
     if request.method == 'GET':
         if 'page_id' in request.GET:
@@ -317,3 +319,11 @@ def track_url(request):
                 pass
 
     return redirect(url)
+
+def contact(request):
+    # Like before, obtain the context for the user's request
+    context = RequestContext(request)
+    context_dict = {}
+
+    return render_to_response('knowvi/contact.html', context_dict, context)
+

@@ -9,18 +9,20 @@
 
 <div class="row">
 
-    <div class="col-xs-5">
-        <h2 class="sub-header">Top Five Categories</h2>
-        {% if categories %}
+    <div class="col-xs-6">
+        <h2 class="sub-header">Newly Added Categories</h2>
         <ul>
-            {% for category in categories %}
-            <li><a href="/knowvi/category/{{ category.url }}"
-                >{{ category.name }}</a></li>
-            {% endfor %}
+            <li><a href="/knowvi/category/Collections/"
+                >Collections</a></li>
+            <li><a href="/knowvi/category/Computer_Science/"
+                >Computer Science</a></li>
+            <li><a href="/knowvi/category/Dictionary/"
+                >Dictionary</a></li>
+            <li><a href="/knowvi/category/Literacy/"
+                >Literacy</a></li>
+            <li><a href="/knowvi/category/Languages/"
+                >Languages</a></li>
         </ul>
-        {% else %}
-        <strong>No categories at present.</strong>
-        {% endif %}
     </div>
 
     <div class="col-xs-5">

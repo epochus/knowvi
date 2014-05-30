@@ -1,0 +1,34 @@
+{% extends 'knowvi/base.html' %}
+
+{% block title %}Submit{% endblock %}
+
+{% block body_block %}
+
+<div class="jumbotron">
+
+    <div class="container">
+        <div class="col-lg-7 col-lg-offset-3">
+
+            <h1>Contact Us</h1>
+            <form id="contact_form" method="post" action="/knowvi/contact/">
+                {% csrf_token %}
+
+                <input type="text" class="form-control input-lg" 
+                placeholder="Subject" name="subject" value="" size="50" />
+                <br />
+                <input type="Your e-mail (optional)" class="form-control input-lg" 
+                placeholder="E-mail" name="e-mail" value="" size="50" />
+                <br />
+                <textarea class="form-control input-lg" name="message" 
+                    placeholder="Message" rows="10" cols="50" /></textarea>
+                <br />
+            
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </form>
+
+
+        </div> <!-- col-lg-6 -->
+    </div> <!-- container -->
+</div>
+
+{% endblock %}
