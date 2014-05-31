@@ -13,7 +13,7 @@ def populate():
     compsci = add_cat("Computer Science")
     add_page(cat=compsci,
         title="Computer Science Field Guide",
-        url="https://c.canterbury.ac.nz/csfieldguide/")
+        url="http://www.cosc.canterbury.ac.nz/csfieldguide/")
 
     dict_cat = add_cat("Dictionary")
     add_page(cat=dict_cat,
@@ -28,10 +28,10 @@ def populate():
         title="Free Language Learning Resources",
         url="http://www.universitiesandcolleges.org/blog/language-learning-resources/")
 
-    lit_cat = add_cat("Literacy")
-    add_page(cat=lit_cat,
-        title="Gorilla Paper",
-        url="http://pages.uscd.edu/~dkjordan/resources/gorillapaper/gorilla.html/")
+    physics_cat = add_cat("Physics")
+    add_page(cat=physics_cat,
+        title="Visualizations",
+        url="https://en.wikipedia.org/wiki/User:LucasVB/Gallery")
 
 
     # Print out what we have added to the user.

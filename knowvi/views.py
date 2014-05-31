@@ -11,9 +11,13 @@ from knowvi.models import Category, Page
 from knowvi.forms import CategoryForm
 from knowvi.forms import PageForm
 from knowvi.forms import UserForm, UserProfileForm
+from knowvi.forms import ContactForm
 
 # Checking date and time
 from datetime import datetime
+
+# Sending mail
+from django.core.mail import send_mail
 
 def encode_url(str):
     return str.replace(' ', '_')
@@ -304,8 +308,8 @@ def search(request):
 
 def track_url(request):
     context = RequestContext(request)
+
     page_id = None
-    cat_id =  None
     url = '/knowvi/'
     if request.method == 'GET':
         if 'page_id' in request.GET:
@@ -324,6 +328,22 @@ def contact(request):
     # Like before, obtain the context for the user's request
     context = RequestContext(request)
     context_dict = {}
+
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            send_mail(
+                    cd['subject'],
+                    cd['message'],
+                    cd.get('email', 'noreply@gmail.com'),
+                    ['knowvi@gmail.com'],
+            )
+            return HttpResponseRedirect('/knowvi/')
+    else:
+        form = ContactForm()
+
+    context_dict['form'] = form
 
     return render_to_response('knowvi/contact.html', context_dict, context)
 

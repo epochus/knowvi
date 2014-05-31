@@ -5,30 +5,44 @@
 {% block body_block %}
 
 <div class="jumbotron">
-
     <div class="container">
         <div class="col-lg-7 col-lg-offset-3">
 
-            <h1>Contact Us</h1>
-            <form id="contact_form" method="post" action="/knowvi/contact/">
+            <h1 class="text-center">Contact Us</h1>
+
+            {% if form.errors %}
+                <p style="color: red;">
+                    Please correct the error{{ form.errors|pluralize }} below.
+                </p>
+            {% endif %}
+
+            <form class="text-center" id="contact_form" method="post" action="/knowvi/contact/">
                 {% csrf_token %}
 
-                <input type="text" class="form-control input-lg" 
-                placeholder="Subject" name="subject" value="" size="50" />
-                <br />
-                <input type="Your e-mail (optional)" class="form-control input-lg" 
-                placeholder="E-mail" name="e-mail" value="" size="50" />
-                <br />
-                <textarea class="form-control input-lg" name="message" 
-                    placeholder="Message" rows="10" cols="50" /></textarea>
-                <br />
-            
+                <div class="field">
+                    <label for="id_subject">Subject (required):</label>
+                    {{ form.subject }}
+                    {{ form.subject.errors }}
+                </div>
+
+                <div class="field">
+                    <label for="id_email">&nbsp;&nbsp;E-mail (optional):</label>
+                    {{ form.email }}
+                    {{ form.email.errors }}
+                </div>
+
+                <div class="field">
+                    <label for="id_message">Message:</label>
+                    {{ form.message.errors }}
+                    <p>{{ form.message }}</p>
+                </div>
+
                 <button class="btn btn-primary" type="submit">Submit</button>
             </form>
 
 
         </div> <!-- col-lg-6 -->
-    </div> <!-- container -->
+    </div>
 </div>
 
 {% endblock %}

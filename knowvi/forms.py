@@ -61,3 +61,10 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ('website', 'picture')
+
+class ContactForm(forms.Form):
+    subject = forms.CharField(max_length=30)
+    email = forms.EmailField(required=False)
+    message = forms.CharField(widget=forms.Textarea(attrs={'cols': '25',
+        'rows': '5'}))
+
