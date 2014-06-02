@@ -40,11 +40,11 @@ DATABASE_PATH = os.path.join(PROJECT_PATH, 'knowvi.db')
 SECRET_KEY = '=1@^amtq%b_no*_0#vv-qx2)bx-t&1qt9#^vegmqc&k$3&cwgm'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['zguang.pythonanywhere.com']
 
 
 
