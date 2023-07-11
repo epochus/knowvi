@@ -9,4 +9,4 @@ Made by following www.tangowithdjango.com
 Current status: Finished. Uses Django 1.6, Bootstrap 3.1, jquery 2.1.1,
 and Pillow 2.4.
 
-Access the site at: ""
+Access the site at: 
